@@ -42,8 +42,8 @@ export default function Navbar() {
 
   const isHeroPage = pathname === '/'
 
-  const textColor   = scrolled || !isHeroPage ? 'var(--brand-text)'   : 'var(--hero-text)'
-  const mutedColor  = scrolled || !isHeroPage ? 'var(--brand-muted)'  : 'var(--hero-muted)'
+  const textColor = 'var(--brand-text)'
+  const mutedColor = 'var(--brand-muted)'
   const borderColor = scrolled || !isHeroPage ? 'var(--brand-hairline)' : 'transparent'
 
   return (
@@ -52,7 +52,7 @@ export default function Navbar() {
         className="fixed inset-x-0 top-0 z-[80] transition-all duration-500"
         style={{
           background: scrolled
-            ? 'rgba(242, 235, 221, 0.94)'
+            ? 'rgba(0, 0, 0, 0.94)'
             : isHeroPage
               ? 'transparent'
               : 'var(--brand-bg)',

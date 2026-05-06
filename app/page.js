@@ -22,7 +22,10 @@ const DATE_LINE = "Posted from Windhoek · 14°S 17°E";
 export default function Home() {
   const [heroSlides, setHeroSlides] = useState([]);
 
-  const featured = useMemo(() => PRODUCTS.slice(0, 4), []);
+  const featured = useMemo(() => {
+    const shuffled = [...PRODUCTS].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 4);
+  }, []);
   const collections = useMemo(() => {
     const seen = new Map();
     PRODUCTS.forEach((p) => {
@@ -38,15 +41,18 @@ export default function Home() {
       .then((r) => r.json())
       .then((p) => {
         if (!mounted) return;
-        if (p?.success && Array.isArray(p.data)) setHeroSlides(p.data);
+        if (p?.success && Array.isArray(p.data)) {
+          const shuffled = [...p.data].sort(() => Math.random() - 0.5);
+          setHeroSlides(shuffled);
+        }
       })
-      .catch(() => {});
+      .catch(() => { });
     return () => {
       mounted = false;
     };
   }, []);
 
-  const heroA = heroSlides[0] || "/assets/IMG_8332.jpg";
+  const heroA = heroSlides[0] || "/assets/IMG-20250919-WA0035.jpg";
   const heroB = heroSlides[1] || "/assets/IMG_8569.jpg";
   const heroC = heroSlides[2] || "/assets/hero.jpg";
 
