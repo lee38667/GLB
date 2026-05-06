@@ -60,7 +60,11 @@ export function ImageUploader({ images, setImages, folder, maxImages = 10 }: Pro
     if (idx === 0) return
     setImages((prev) => {
       const next = [...prev]
-      ;[next[idx - 1]!, next[idx]!] = [next[idx]!, next[idx - 1]!]
+      const previousImage = next[idx - 1]
+      const currentImage = next[idx]
+      if (!previousImage || !currentImage) return prev
+      next[idx - 1] = currentImage
+      next[idx] = previousImage
       return next.map((img, i) => ({ ...img, position: i }))
     })
   }
