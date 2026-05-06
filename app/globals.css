@@ -1,0 +1,698 @@
+/* stylelint-disable at-rule-no-unknown */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
+
+/* ─────────────────────────────────────────────────────────────
+   GLB · LOVE LETTER ZINE · DESIGN SYSTEM
+   Concept: a hand-set editorial zine. Cream paper, rich ink,
+   one stamp of vermillion red. Expressive italic serifs, sharp
+   sans body, monospace footnotes. Asymmetric. Type-led.
+───────────────────────────────────────────────────────────── */
+
+:root {
+  color-scheme: light;
+
+  /* paper & ink */
+  --paper:        #F2EBDD;
+  --paper-warm:   #F7F1E2;
+  --paper-soft:   #ECE2CD;
+  --paper-deep:   #E2D6BB;
+  --ink:          #14110E;
+  --ink-soft:     #2A241D;
+  --graphite:     #6B6258;
+  --sepia:        #8A7A65;
+  --hairline:     #C9BEA7;
+
+  /* the ONE accent — postal stamp red */
+  --vermillion:   #D63A26;
+  --vermillion-deep: #A82815;
+
+  /* hero on-dark */
+  --hero-text:    #F7F1E2;
+  --hero-muted:   rgba(247, 241, 226, 0.6);
+  --hero-rule:    rgba(247, 241, 226, 0.22);
+
+  /* legacy aliases referenced elsewhere — keep them mapped */
+  --brand-bg:        var(--paper);
+  --brand-bg-soft:   var(--paper-soft);
+  --brand-bg-deep:   var(--paper-deep);
+  --brand-text:      var(--ink);
+  --brand-muted:     var(--graphite);
+  --brand-hairline:  var(--hairline);
+  --brand-accent:    var(--vermillion);
+}
+
+html, body { min-height: 100%; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  font-feature-settings: "ss01", "ss02", "cv11";
+}
+
+/* paper grain — pressed cotton */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+/* faint fold line down the page — like a folded letter */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; bottom: 0; left: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(20,17,14,0.04) 12%, rgba(20,17,14,0.04) 88%, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.site-shell { position: relative; isolation: isolate; }
+.site-shell > * { position: relative; z-index: 1; }
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; }
+
+::selection { background: var(--vermillion); color: var(--paper-warm); }
+
+/* ─────────────────────────────────────────────────────────────
+   TYPOGRAPHY UTILITIES
+───────────────────────────────────────────────────────────── */
+
+.glb-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+.glb-eyebrow::before {
+  content: '';
+  width: 1.5rem; height: 1px;
+  background: currentColor;
+}
+
+.glb-eyebrow-stamp {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  border: 1px solid var(--vermillion);
+  padding: 0.32rem 0.7rem;
+}
+
+.glb-display {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  line-height: 0.9;
+  color: var(--ink);
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+.glb-display em {
+  font-style: italic;
+  font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  color: var(--vermillion);
+  letter-spacing: -0.012em;
+}
+
+.glb-script {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  color: var(--vermillion);
+}
+
+.glb-lede {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.05vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 56ch;
+}
+
+.glb-caption {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--graphite);
+}
+
+.glb-num {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  color: var(--vermillion);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LAYOUT SHELL & SECTIONS
+───────────────────────────────────────────────────────────── */
+
+.glb-shell {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1440px;
+  padding-left:  clamp(1.25rem, 4.5vw, 3.5rem);
+  padding-right: clamp(1.25rem, 4.5vw, 3.5rem);
+  box-sizing: border-box;
+}
+
+.glb-section { padding: clamp(4rem, 8vw, 7.5rem) 0; }
+.glb-section-tight { padding: clamp(2.5rem, 5vw, 4rem) 0; }
+
+.glb-rule {
+  height: 1px; background: var(--ink);
+  opacity: 0.85;
+}
+.glb-rule-soft { height: 1px; background: var(--hairline); }
+
+/* dotted/dashed perforated edge — postage feel */
+.glb-perforated {
+  --d: 6px;
+  background-image:
+    radial-gradient(circle at center, var(--paper) 3px, transparent 3.6px);
+  background-size: var(--d) var(--d);
+  background-repeat: repeat-x;
+  height: var(--d);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   BUTTONS — hand-set letterpress
+───────────────────────────────────────────────────────────── */
+
+.glb-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.95rem 1.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: var(--ink);
+  transition: transform 0.18s ease, background 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
+  position: relative;
+}
+.glb-btn::after {
+  content: '→';
+  font-family: var(--font-sans);
+  letter-spacing: 0;
+  transition: transform 0.22s ease;
+}
+.glb-btn:hover::after { transform: translateX(4px); }
+
+.glb-btn-ink {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  box-shadow: 4px 4px 0 0 var(--vermillion);
+}
+.glb-btn-ink:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--vermillion);
+}
+
+.glb-btn-stamp {
+  background: var(--vermillion);
+  color: var(--paper-warm);
+  border-color: var(--vermillion);
+}
+.glb-btn-stamp:hover { background: var(--vermillion-deep); border-color: var(--vermillion-deep); }
+
+.glb-btn-ghost { border-color: var(--ink); color: var(--ink); }
+.glb-btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+.glb-btn-light {
+  background: transparent;
+  color: var(--hero-text);
+  border-color: var(--hero-text);
+}
+.glb-btn-light:hover { background: var(--hero-text); color: var(--ink); }
+
+/* ─────────────────────────────────────────────────────────────
+   HERO — "Letter No. 01"
+───────────────────────────────────────────────────────────── */
+
+.glb-hero {
+  position: relative;
+  padding-top: clamp(7rem, 12vw, 9.5rem);
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+  overflow: hidden;
+}
+
+.glb-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  align-items: end;
+}
+
+@media (max-width: 900px) {
+  .glb-hero-grid { grid-template-columns: 1fr; }
+}
+
+/* image stack — overlapping polaroid frames */
+.glb-photo-stack {
+  position: relative;
+  height: clamp(420px, 58vw, 640px);
+}
+.glb-photo {
+  position: absolute;
+  background: var(--paper-warm);
+  padding: 12px 12px 38px 12px;
+  border: 1px solid var(--hairline);
+  box-shadow: 0 22px 40px -18px rgba(20,17,14,0.45);
+  overflow: hidden;
+}
+.glb-photo::after {
+  content: attr(data-caption);
+  position: absolute;
+  bottom: 10px; left: 16px; right: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  color: var(--graphite);
+  text-transform: uppercase;
+}
+.glb-photo > span {
+  position: relative;
+  display: block;
+  width: 100%; height: 100%;
+}
+
+/* postage stamp circle */
+.glb-stamp {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 96px; height: 96px;
+  border: 1.5px dashed var(--vermillion);
+  border-radius: 999px;
+  color: var(--vermillion);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.25;
+  transform: rotate(-8deg);
+  background: var(--paper-warm);
+}
+
+/* big initial drop-cap "GLB" mark */
+.glb-monogram {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  font-size: clamp(7rem, 18vw, 16rem);
+  line-height: 0.78;
+  color: var(--vermillion);
+  user-select: none;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   MARQUEE
+───────────────────────────────────────────────────────────── */
+
+.glb-marquee {
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--paper-warm);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.glb-marquee-track {
+  display: flex; gap: 0;
+  padding: 1rem 0;
+  min-width: max-content;
+  animation: marquee-scroll 38s linear infinite;
+}
+.glb-marquee-item {
+  display: inline-flex; align-items: center; gap: 1.5rem;
+  padding: 0 2rem;
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  font-size: 1.85rem;
+  letter-spacing: -0.01em;
+}
+.glb-marquee-item::after {
+  content: '✶';
+  font-style: normal;
+  color: var(--vermillion);
+  font-size: 1.1rem;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PRODUCT CARDS — catalog tear-sheets
+───────────────────────────────────────────────────────────── */
+
+.glb-tearsheet {
+  position: relative;
+  background: var(--paper-warm);
+  border: 1px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.17,0.67,0.36,0.99);
+}
+.glb-tearsheet:hover { transform: translateY(-4px); }
+
+.glb-tearsheet-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--paper-soft);
+  border-bottom: 1px solid var(--ink);
+}
+.glb-tearsheet-frame img {
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.glb-tearsheet:hover .glb-tearsheet-frame img { transform: scale(1.06); }
+
+.glb-tearsheet-frame::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 30px,
+      rgba(20,17,14,0.025) 30px,
+      rgba(20,17,14,0.025) 31px
+    );
+  pointer-events: none; z-index: 2;
+}
+
+.glb-tearsheet-meta {
+  padding: 1rem 1.1rem 1.2rem;
+  display: flex; flex-direction: column; gap: 0.65rem;
+}
+
+.glb-cat-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+.glb-cat-row .cat { color: var(--vermillion); }
+
+.glb-tearsheet-name {
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.glb-tearsheet-name em { font-style: italic; color: var(--vermillion); }
+
+.glb-tearsheet-price {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+/* corner stamp index 01/02/03 */
+.glb-corner-num {
+  position: absolute;
+  top: -1px; right: -1px;
+  background: var(--ink);
+  color: var(--paper-warm);
+  padding: 0.4rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  z-index: 3;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   MANIFESTO BLOCK
+───────────────────────────────────────────────────────────── */
+
+.glb-manifesto {
+  position: relative;
+  padding: clamp(2rem, 5vw, 4rem) 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      var(--paper) 0,
+      var(--paper) 31px,
+      rgba(214, 58, 38, 0.10) 31px,
+      rgba(214, 58, 38, 0.10) 32px
+    );
+}
+
+.glb-manifesto-margin {
+  position: absolute; left: 8.5%; top: 0; bottom: 0;
+  width: 1px; background: var(--vermillion);
+  opacity: 0.55;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   COLLECTION INDEX
+───────────────────────────────────────────────────────────── */
+
+.glb-index-row {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto auto;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--hairline);
+  transition: padding 0.3s ease, color 0.3s ease;
+  position: relative;
+}
+.glb-index-row:hover { padding-left: 1rem; }
+.glb-index-row:hover .glb-index-name { color: var(--vermillion); }
+.glb-index-row:hover .glb-index-name em { font-style: italic; }
+
+.glb-index-num { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.18em; color: var(--graphite); }
+.glb-index-name {
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  letter-spacing: -0.015em;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+.glb-index-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+.glb-index-arrow {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  color: var(--ink);
+  transition: transform 0.3s ease;
+}
+.glb-index-row:hover .glb-index-arrow { transform: translateX(8px); color: var(--vermillion); }
+
+/* ─────────────────────────────────────────────────────────────
+   SIGNUP STRIP
+───────────────────────────────────────────────────────────── */
+
+.glb-signup {
+  position: relative;
+  background: var(--ink);
+  color: var(--paper-warm);
+  padding: clamp(3rem, 6vw, 5rem) 0;
+}
+.glb-signup::after {
+  content: '';
+  position: absolute; left: 0; right: 0; top: 0;
+  height: 6px;
+  background-image: radial-gradient(circle at center, var(--paper) 3px, transparent 3.6px);
+  background-size: 6px 6px;
+  background-repeat: repeat-x;
+}
+
+.glb-signup-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--paper-warm);
+  padding: 0.9rem 0;
+  color: var(--paper-warm);
+  font-family: var(--font-display), serif;
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
+}
+.glb-signup-input:focus { outline: none; border-color: var(--vermillion); }
+.glb-signup-input::placeholder { color: rgba(247,241,226,0.4); font-style: italic; }
+
+/* ─────────────────────────────────────────────────────────────
+   COMPATIBILITY — old utilities still referenced elsewhere
+───────────────────────────────────────────────────────────── */
+
+.brand-shell {
+  width: 100%; box-sizing: border-box;
+  padding-left:  clamp(1.25rem, 4.5vw, 3.5rem);
+  padding-right: clamp(1.25rem, 4.5vw, 3.5rem);
+}
+.brand-section { padding: clamp(4rem, 8vw, 7rem) 0; }
+.brand-divider { height: 1px; background: var(--hairline); }
+.brand-eyebrow,
+.brand-eyebrow-light {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+.brand-eyebrow-light { color: var(--hero-muted); }
+.brand-title {
+  font-family: var(--font-display), serif;
+  font-size: clamp(2.6rem, 7vw, 6rem);
+  line-height: 0.92;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+}
+.brand-title-light { color: var(--hero-text); }
+.brand-subtitle {
+  max-width: 60ch;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.brand-subtitle-light { color: rgba(247,241,226,0.7); font-size: 0.95rem; line-height: 1.7; max-width: 60ch; }
+
+.brand-button {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.85rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: all 0.22s ease;
+  border: 1px solid currentColor;
+}
+.brand-button-primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.brand-button-primary:hover { background: transparent; color: var(--ink); }
+.brand-button-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.brand-button-ghost:hover { background: var(--ink); color: var(--paper); }
+.brand-button-primary-light { background: var(--hero-text); color: var(--ink); border-color: var(--hero-text); }
+.brand-button-primary-light:hover { background: transparent; color: var(--hero-text); }
+.brand-button-ghost-light { background: transparent; color: var(--hero-text); border-color: var(--hero-rule); }
+.brand-button-ghost-light:hover { border-color: var(--hero-text); background: rgba(247,241,226,0.06); }
+
+.brand-panel { border: 1px solid var(--hairline); background: var(--paper-warm); }
+.brand-panel-soft { border: 1px solid var(--hairline); background: transparent; }
+
+.brand-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.brand-grid > * { grid-column: span 12 / span 12; }
+
+.brand-marquee { display: flex; white-space: nowrap; overflow: hidden; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--paper); }
+.brand-marquee-track { display: flex; gap: 0; padding: 0.85rem 0; min-width: max-content; animation: marquee-scroll 28s linear infinite; }
+.brand-marquee-item { display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink); padding: 0 2rem; }
+.brand-marquee-item::after { content: '✶'; margin-left: 2rem; color: var(--vermillion); }
+
+.brand-media-card { position: relative; overflow: hidden; background: var(--paper-warm); border: 1px solid var(--ink); }
+.brand-media-card img { transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.brand-media-card:hover img { transform: scale(1.04); }
+
+.brand-stat { border-top: 1px solid var(--ink); padding-top: 1rem; }
+.brand-stat-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--graphite); }
+.brand-stat-value { margin-top: 0.4rem; font-family: var(--font-display), serif; font-size: clamp(1.2rem, 2.4vw, 1.85rem); color: var(--ink); }
+.brand-stat-light .brand-stat-label { color: var(--hero-muted); }
+.brand-stat-light .brand-stat-value { color: var(--hero-text); }
+.brand-stat-light { border-color: var(--hero-rule); }
+
+.brand-input, .brand-textarea {
+  width: 100%; border: none; border-bottom: 1px solid var(--ink);
+  background: transparent; color: var(--ink);
+  padding: 0.75rem 0; font-size: 0.95rem;
+  font-family: var(--font-sans); transition: border-color 0.2s;
+}
+.brand-input:focus, .brand-textarea:focus { outline: none; border-color: var(--vermillion); box-shadow: none; }
+.brand-input::placeholder, .brand-textarea::placeholder { color: var(--graphite); font-style: italic; }
+
+.brand-kicker {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border: 1px solid var(--ink); background: transparent;
+  padding: 0.42rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.22em;
+  color: var(--ink);
+}
+.brand-chip {
+  display: inline-flex; align-items: center;
+  border: 1px solid var(--vermillion);
+  padding: 0.32rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--vermillion);
+}
+
+/* responsive grid spans (legacy) */
+@media (min-width: 768px) {
+  .brand-grid > .span-3 { grid-column: span 3 / span 3; }
+  .brand-grid > .span-4 { grid-column: span 4 / span 4; }
+  .brand-grid > .span-5 { grid-column: span 5 / span 5; }
+  .brand-grid > .span-6 { grid-column: span 6 / span 6; }
+  .brand-grid > .span-7 { grid-column: span 7 / span 7; }
+  .brand-grid > .span-8 { grid-column: span 8 / span 8; }
+  .brand-grid > .span-9 { grid-column: span 9 / span 9; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   ENTRANCE ANIMATIONS
+───────────────────────────────────────────────────────────── */
+
+@keyframes glb-rise {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes glb-rise-rot {
+  from { opacity: 0; transform: translateY(40px) rotate(-2deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(0); }
+}
+@keyframes glb-stamp-in {
+  0%   { opacity: 0; transform: scale(2) rotate(-30deg); }
+  60%  { opacity: 1; transform: scale(0.92) rotate(-4deg); }
+  100% { opacity: 1; transform: scale(1) rotate(-8deg); }
+}
+
+.anim-rise   { animation: glb-rise 0.9s cubic-bezier(0.17,0.67,0.36,0.99) both; }
+.anim-rise-r { animation: glb-rise-rot 1s cubic-bezier(0.17,0.67,0.36,0.99) both; }
+.anim-stamp  { animation: glb-stamp-in 0.9s cubic-bezier(0.17,0.67,0.36,0.99) both; }
+
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.26s; }
+.delay-4 { animation-delay: 0.38s; }
+.delay-5 { animation-delay: 0.52s; }
+.delay-6 { animation-delay: 0.68s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-rise, .anim-rise-r, .anim-stamp,
+  .glb-marquee-track { animation: none !important; }
+}

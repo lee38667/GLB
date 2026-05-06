@@ -1,0 +1,121 @@
+export const PRODUCTS = [
+  {
+    id: 'bestipink',
+    name: 'GLB Classic Tee — Pink',
+    collection: 'GLB Classic',
+    price: 250,
+    file: 'bestipink.jpg',
+    description:
+      'Part of the GLB Classic range seen in the catalogue—bold colours that spell out Give. Love. Back. on ultra-soft cotton.',
+    specs: [
+      { label: 'Collection', value: 'GLB Classic' },
+      { label: 'Material', value: '100% Combed Ring-Spun Cotton (180gsm)' },
+      { label: 'Fit', value: 'Unisex, Regular' },
+      { label: 'Sizes', value: 'S, M, L, XL' },
+      { label: 'Colors', value: 'Pink, Purple, Black, White, Blue' },
+      { label: 'SKU', value: 'GLB-TEE-CLSC-PNK' },
+    ],
+  },
+  {
+    id: 'bestiepurple',
+    name: 'GLB Classic Tee — Purple',
+    collection: 'GLB Classic',
+    price: 250,
+    file: 'bestipurple.jpg',
+    description:
+      'A premium tee inspired by the GLB Classic story—statement typography, saturated hues, and a reminder to give love back.',
+    specs: [
+      { label: 'Collection', value: 'GLB Classic' },
+      { label: 'Material', value: '100% Combed Ring-Spun Cotton (180gsm)' },
+      { label: 'Fit', value: 'Unisex, Regular' },
+      { label: 'Sizes', value: 'S, M, L, XL' },
+      { label: 'Colors', value: 'Pink, Purple, Black, White, Blue' },
+      { label: 'SKU', value: 'GLB-TEE-CLSC-PUR' },
+    ],
+  },
+  {
+    id: 'classicblack',
+    name: 'Embrace It Tee — Black',
+    collection: 'Embrace It',
+    price: 200,
+    file: 'classicblack.jpg',
+    description:
+      'From the Embrace It capsule—designed to “wear your truth” and keep love front and centre in everyday fits.',
+    specs: [
+      { label: 'Collection', value: 'Embrace It' },
+      { label: 'Material', value: '100% Cotton (180gsm)' },
+      { label: 'Fit', value: 'Unisex, Regular' },
+      { label: 'Sizes', value: 'S, M, L, XL' },
+      { label: 'Colors', value: 'Black, Brown, White, Purple, Green' },
+      { label: 'SKU', value: 'GLB-TEE-EMB-BLK' },
+    ],
+  },
+  {
+    id: 'classicwhite',
+    name: 'Embrace It Tee — White',
+    collection: 'Embrace It',
+    price: 200,
+    file: 'classicwhite.jpg',
+    description:
+      'Lightweight edition of the Embrace It drop—built for those who meet every moment head-on with compassion.',
+    specs: [
+      { label: 'Collection', value: 'Embrace It' },
+      { label: 'Material', value: '100% Cotton (180gsm)' },
+      { label: 'Fit', value: 'Unisex, Regular' },
+      { label: 'Sizes', value: 'S, M, L, XL' },
+      { label: 'Colors', value: 'Black, Brown, White, Purple, Green' },
+      { label: 'SKU', value: 'GLB-TEE-EMB-WHT' },
+    ],
+  },
+  {
+    id: 'totebag',
+    name: 'Give Love Back Tote',
+    collection: 'Accessories',
+    price: 180,
+    file: 'totebag.jpg',
+    description:
+      'As seen in the Accessories section—heavy-duty canvas that carries groceries, books, or creative tools with meaning.',
+    specs: [
+      { label: 'Collection', value: 'Accessories' },
+      { label: 'Material', value: '100% Cotton Canvas (12oz)' },
+      { label: 'Size', value: '38 × 42 cm (handles 66 cm)' },
+      { label: 'Colors', value: 'Beige' },
+      { label: 'Care', value: 'Spot clean recommended' },
+      { label: 'SKU', value: 'GLB-TOTE-ACC' },
+    ],
+  },
+  {
+    id: 'truckerblack',
+    name: 'Trucker Hat — Black',
+    collection: 'Accessories',
+    price: 200,
+    file: 'truckerblack.jpg',
+    description:
+      'Crowned in the Accessories spread—mesh-backed trucker with the GLB mantra, ready for block parties and pop-ups.',
+    specs: [
+      { label: 'Collection', value: 'Accessories' },
+      { label: 'Crown', value: '5-panel, mid profile' },
+      { label: 'Closure', value: 'Adjustable snapback' },
+      { label: 'Colors', value: 'Black, Beige, Grey' },
+      { label: 'Material', value: 'Cotton front, polyester mesh back' },
+      { label: 'SKU', value: 'GLB-CAP-ACC-BLK' },
+    ],
+  },
+  {
+    id: 'truckerwhite',
+    name: 'Trucker Hat — Beige',
+    collection: 'Accessories',
+    price: 200,
+    file: 'truckerwhite.jpg',
+    description:
+      'A softer take on the GLB crown—same breathable build, finished in the beige colourway from the catalogue.',
+    specs: [
+      { label: 'Collection', value: 'Accessories' },
+      { label: 'Crown', value: '5-panel, mid profile' },
+      { label: 'Closure', value: 'Adjustable snapback' },
+      { label: 'Colors', value: 'Black, Beige, Grey' },
+      { label: 'Material', value: 'Cotton front, polyester mesh back' },
+      { label: 'SKU', value: 'GLB-CAP-ACC-BEG' },
+    ],
+  },
+]

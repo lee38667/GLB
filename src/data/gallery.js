@@ -1,0 +1,16 @@
+export const GALLERY = [
+  'classicblack.jpg',
+  'classicwhite.jpg',
+  'truckerblack.jpg',
+  'truckerwhite.jpg',
+  'totebag.jpg',
+  'IMG-20250919-WA0008.jpg',
+  'IMG-20250919-WA0011.jpg',
+  'IMG-20250919-WA0014.jpg',
+  'IMG-20250919-WA0019.jpg',
+  'IMG-20250919-WA0025.jpg',
+  'IMG-20250919-WA0032.jpg',
+  'IMG-20250919-WA0041.jpg',
+  'IMG-20250919-WA0050.jpg',
+  'IMG-20250919-WA0064.jpg',
+]
