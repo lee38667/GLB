@@ -254,9 +254,30 @@ export default function ShopPage() {
 
       <Container className="pb-24 pt-10">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b border-ink pb-4">
-          <p className="font-mono text-[0.7rem] tracking-[0.18em] uppercase text-graphite">
-            {loading ? '…' : `${total} piece${total === 1 ? '' : 's'} in print`}
-          </p>
+          <div className="flex flex-wrap items-center gap-4">
+            <p className="font-mono text-[0.7rem] tracking-[0.18em] uppercase text-graphite">
+              {loading ? '…' : `${total} piece${total === 1 ? '' : 's'} in print`}
+            </p>
+            {facets && facets.collections.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => setCollection('')}
+                  className={`${pillBase} ${!collection ? pillActive : pillIdle}`}
+                >
+                  All
+                </button>
+                {facets.collections.map((c) => (
+                  <button
+                    key={c}
+                    onClick={() => setCollection(collection === c ? '' : c)}
+                    className={`${pillBase} ${collection === c ? pillActive : pillIdle}`}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
           <div className="flex items-center gap-3">
             <Select
               value={sort}

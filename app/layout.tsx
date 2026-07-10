@@ -4,6 +4,7 @@ import { Suspense } from 'react'
 
 import Navbar from '@/components/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { HideOnAdmin } from '@/components/layout/HideOnAdmin'
 import Providers from './providers'
 
 import './globals.css'
@@ -91,12 +92,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Providers>
           <div className="site-shell relative flex min-h-screen flex-col overflow-x-hidden">
             <Suspense fallback={null}>
-              <Navbar />
+              <HideOnAdmin>
+                <Navbar />
+              </HideOnAdmin>
             </Suspense>
             <main id="main" className="flex-1">
               {children}
             </main>
-            <Footer />
+            <Suspense fallback={null}>
+              <HideOnAdmin>
+                <Footer />
+              </HideOnAdmin>
+            </Suspense>
           </div>
         </Providers>
       </body>

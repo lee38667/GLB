@@ -13,7 +13,6 @@ export const SITE = {
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/shop', label: 'Shop' },
-  { href: '/collections', label: 'Collections' },
   { href: '/about', label: 'About' },
   { href: '/events', label: 'Events' },
   { href: '/gallery', label: 'Gallery' },
@@ -22,14 +21,14 @@ export const NAV_LINKS = [
 
 export const ADMIN_NAV = [
   { href: '/admin', label: 'Overview' },
-  { href: '/admin/products', label: 'Products' },
   { href: '/admin/orders', label: 'Orders' },
-  { href: '/admin/inventory', label: 'Inventory' },
-  { href: '/admin/analytics', label: 'Analytics' },
+  { href: '/admin/products', label: 'Products' },
+  { href: '/admin/customers', label: 'Customers' },
   { href: '/admin/finance', label: 'Finance' },
+  { href: '/admin/socials', label: 'Socials' },
+  { href: '/admin/email', label: 'Email' },
   { href: '/admin/events', label: 'Events' },
   { href: '/admin/rsvp', label: 'RSVPs' },
-  { href: '/admin/email', label: 'Email' },
 ] as const
 
 export const SIZE_OPTIONS = ['XS', 'S', 'M', 'L', 'XL', 'XXL'] as const
