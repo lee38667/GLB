@@ -106,7 +106,7 @@ export default function ContactPage() {
                       Studio
                     </dt>
                     <dd className="mt-1 font-display text-lg tracking-tight">
-                      hello@giveloveback.com
+                      gvelveback@gmail.com
                     </dd>
                   </div>
                   <div className="border-t border-hairline pt-3">
@@ -208,11 +208,10 @@ export default function ContactPage() {
 
               {status.type !== "idle" && (
                 <p
-                  className={`mt-6 border px-4 py-3 text-sm font-mono tracking-wide ${
-                    status.type === "success"
-                      ? "border-ink bg-paper-warm text-ink"
-                      : "border-vermillion bg-paper-warm text-vermillion"
-                  }`}
+                  className={`mt-6 border px-4 py-3 text-sm font-mono tracking-wide ${status.type === "success"
+                    ? "border-ink bg-paper-warm text-ink"
+                    : "border-vermillion bg-paper-warm text-vermillion"
+                    }`}
                 >
                   {status.message}
                 </p>
@@ -227,9 +226,9 @@ export default function ContactPage() {
         <div className="glb-shell">
           <div className="border-t border-ink pt-10 grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
-              ["Press", "press@giveloveback.com", "Editorial requests, samples, interviews."],
-              ["Wholesale", "stockists@giveloveback.com", "Boutique partners and pop-up stockists."],
-              ["Collabs", "studio@giveloveback.com", "Artists, photographers, community projects."],
+              ["Press", "gvelveback.press@gmail.com", "Editorial requests, samples, interviews."],
+              ["Wholesale", "gvelveback.wholesale@gmail.com", "Boutique partners and pop-up stockists."],
+              ["Collabs", "gvelveback.collab@gmail.com", "Artists, photographers, community projects."],
             ].map(([h, m, p]) => (
               <article key={h} className="border-t border-vermillion pt-5">
                 <p className="font-mono text-vermillion text-xs tracking-[0.22em]">{h}</p>

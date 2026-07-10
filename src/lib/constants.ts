@@ -4,7 +4,7 @@ export const SITE = {
   tagline: 'Fashion as an act of care',
   description:
     'Community-first clothing brand creating pieces that carry care, connection, and self-expression.',
-  email: 'hello@giveloveback.com',
+  email: 'gvelveback@gmail.com',
   currency: 'NAD',
   locale: 'en-NA',
   countries: ['NA', 'ZA'],
